@@ -1,0 +1,992 @@
+@phdthesis{SELF,
+author={Holzle,Urs},
+year={1994},
+title={Adaptive optimization for self: Reconciling high performance with exploratory programming},
+journal={ProQuest Dissertations and Theses},
+pages={192},
+note={Copyright - Database copyright ProQuest LLC; ProQuest does not claim copyright in the individual underlying works; Last updated - 2023-02-23},
+abstract={Crossing abstraction boundaries often incurs a substantial run-time overhead in the form of frequent procedure calls. Thus, pervasive use of abstraction, while desirable from a design standpoint, may lead to very inefficient programs. Aggressively optimizing compilers can reduce this overhead but conflict with interactive programming environments because they introduce long compilation pauses and often preclude source-level debugging. Thus, programmers are caught on the horns of two dilemmas: they have to choose between abstraction and efficiency, and between responsive programming environments and efficiency. This dissertation shows how to reconcile these seemingly contradictory goals by performing optimizations lazily. Four new techniques work together to achieve this: (1) Type feedback achieves high performance by allowing the compiler to inline message sends based on information extracted from the runtime system. On average, programs run 1.5 times faster than the previous S scELF system; compared to a commercial Smalltalk implementation, two medium-sized benchmarks run about three times faster. This level of performance is obtained with a compiler that is both simpler and faster than previous S scELF compilers. (2) Adaptive optimization achieves high responsiveness without sacrificing performance by using a fast compiler to generate initial code while automatically recompiling heavily used program parts with an optimizing compiler. On a previous-generation workstation like the SPARCstation-2, fewer than 200 pauses exceeded 200 ms during a 50-minute interaction, and 21 pauses exceeded one second. On a current-generation workstation, only 13 pauses exceed 400 ms. (3) Dynamic deoptimization shields the programmer from the complexity of debugging optimized code by transparently recreating non-optimized code as needed. No matter whether a program is optimized or not, it can always be stopped, inspected, and single-stepped. Compared to previous approaches, deoptimization allows more debugging while placing fewer restrictions on the optimizations allowed. (4) Polymorphic inline caching generates type-case sequences on-the-fly to speed up messages sent from the same call site to several different types of object. More significantly, they collect concrete type information for the compiler. With better performance yet good interactive behavior, these techniques reconcile exploratory programming, ubiquitous abstraction, and high performance.},
+keywords={Applied sciences; Computer science; 0984:Computer science},
+isbn={979-8-208-91619-3},
+language={English},
+url={https://www.proquest.com/dissertations-theses/adaptive-optimization-self-reconciling-high/docview/304113365/se-2},
+}
+
+
+@article{sch77,
+  author = {Scheifler, Robert W.},
+  title = {An Analysis of Inline Substitution for a Structured Programming Language},
+  year = {1977},
+  volume = {20},
+  number = {9},
+  doi = {10.1145/359810.359830},
+  journal = {Commun. ACM}}
+ 
+@string{ oopsla = "Conference on Object-Oriented Programming Systems, Languages and Applications (OOPSLA)" }
+@string{ ecoop = "European Conference on Object-Oriented Programming (ECOOP)" }
+@string{ popl = "Symposium on Principles of Programming Languages (POPL)" }
+@string{ pacmpl = "Proc. ACM Program. Lang." }
+@string{ pldi = "Programming Language Design and Implementation (PLDI)" }
+@string{ icfp = "International Conference on Functional Programming (ICFP)" }
+@string{ dls = "Symposium on Dynamic Languages (DLS)" }
+@string{ cgo = "Symposium on Code Generation and Optimization (CGO)" }
+@string{ vee = "International Conference on Virtual Execution Environments (VEE)" }
+@string{ onward = "Symposium on New Ideas in Programming and Reflections on Software (Onward!)" }
+@string{ vmil = "Workshop on Virtual machines and intermediate languages for emerging modularization mechanisms (VMIL)" }
+@string{ toplas = "ACM Transactions on Programming Languages and Systems (TOPLAS)" }
+@string{ ismm = "International Symposium on Memory Management (ISMM)" }
+@string{ icooolps = "Workshop on the Implementation, Compilation, Optimization of Object-Oriented Languages and Programming Systems (ICOOOLPS)" }
+
+@inproceedings{sta14,
+  author = {Stadler, Lukas and W\"{u}rthinger, Thomas and
+                  M\"{o}ssenb\"{o}ck, Hanspeter},
+  year = {2014},
+  title = {Partial Escape Analysis and Scalar Replacement for Java},
+  doi = {10.1145/2581122.2544157},
+  booktitle = cgo}
+  
+@manual{tie19,
+  author = {Tierney, Luke},
+  year = {2019},
+  title = {A Byte Code Compiler for R},
+  url = {www.stat.uiowa.edu/~luke/R/compiler/compiler.pdf}}
+ 
+@inproceedings{lat04,
+  author = {Lattner, Chris and Adve, Vikram},
+  year = {2004},
+  title = {{LLVM}: A Compilation Framework for Lifelong Program Analysis and Transformation},
+  booktitle = cgo,
+  doi = {10.1109/CGO.2004.1281665}}
+
+@inproceedings{sta16,
+  author = {Stadler, Lukas and Welc, Adam and Humer, Christian and Jordan,
+                  Mick},
+  year = {2016},
+  title = {Optimizing R Language Execution via Aggressive Speculation},
+  doi = {10.1145/2989225.2989236},
+  booktitle = dls}
+  
+@inproceedings{wan14,
+  author = {Wang, Haichuan and Wu, Peng and Padua, David},
+  year = {2014},
+  title = {Optimizing {R VM}: Allocation Removal and Path Length Reduction
+                  via Interpreter-level Specialization},
+  doi = {10.1145/2581122.2544153},
+  booktitle = cgo}
+  
+@inproceedings{tal12,
+  author = {Talbot, Justin and DeVito, Zachary and Hanrahan, Pat},
+  year = {2012},
+  title = {Riposte: A Trace-driven Compiler and Parallel {VM} for Vector Code in {R}},
+  doi = {10.1145/2370816.2370825},
+  booktitle = {Conference on Parallel Architectures and Compilation Techniques (PACT)}}
+
+
+@manual{rco19,
+  author = {{R Core Team}},
+  year = {2019},
+  title = {R: A Language and Environment for Statistical Computing},
+  url = {https://www.R-project.org}
+}
+@article{gen00,
+  author = {Gentleman, Robert and Ihaka, Ross},
+  year = {2000},
+  title = {Lexical scope and statistical computing},
+  journal = {Journal of Computational and Graphical Statistics},
+  number = {3},
+  volume = {9},
+  doi = {10.1080/10618600.2000.10474895}
+}
+@article{sch16,
+  author = {Schneider, Sigurd and Smolka, Gert and Hack, Sebastian},
+  year = {2016},
+  title = {An Inductive Proof Method for Simulation-based Compiler Correctness},
+  journal = {arXiv preprint arXiv:1611.09606}
+}
+@inproceedings{lam13,
+  author = {Lameed, Nurudeen A. and Hendren, Laurie J.},
+  year = {2013},
+  title = {A Modular Approach to On-stack Replacement in LLVM},
+  doi = {10.1145/2451512.2451541},
+  booktitle = vee
+}
+@inproceedings{del16,
+  author = {D'Elia, Daniele Cono and Demetrescu, Camil},
+  year = {2016},
+  title = {Flexible on-stack replacement in LLVM},
+  booktitle = cgo
+}
+@inproceedings{wan15,
+  author = {Wang, Kunshan and Lin, Yi and Blackburn, Stephen M. and Norrish, Michael and Hosking, Antony L.},
+  year = {2015},
+  title = {{Draining the Swamp: Micro Virtual Machines as Solid Foundation for Language Development}},
+  doi = {10.4230/LIPIcs.SNAPL.2015.321},
+  booktitle = {Summit on Advances in Programming Languages (SNAPL 2015)}
+}
+@inproceedings{fin03,
+  author = {Fink, Stephen J. and Qian, Feng},
+  year = {2003},
+  title = {Design, Implementation and Evaluation of Adaptive Recompilation with On-stack Replacement},
+  booktitle = cgo
+}
+@article{arn05,
+  author = {Arnold, Matthew and Fink, Stephen J and Grove, David and Hind, Michael and Sweeney, Peter F},
+  year = {2005},
+  title = {A survey of adaptive optimization in virtual machines},
+  journal = {Proceedings of the IEEE},
+  number = {2},
+  volume = {93}
+}
+@inproceedings{sch12,
+  author = {Schneider, David and Bolz, Carl Friedrich},
+  year = {2012},
+  title = {The efficient handling of guards in the design of RPython's
+                  tracing JIT},
+  booktitle = {Workshop on Virtual machines and intermediate languages}
+}
+@inproceedings{hol94,
+  author = {H\"{o}lzle, Urs and Ungar, David},
+  year = {1994},
+  title = {A Third-generation SELF Implementation: Reconciling Responsiveness with Performance},
+  doi = {10.1145/191080.191116},
+  booktitle = oopsla
+}
+@inproceedings{pal01,
+  author = {Paleczny, Michael and Vick, Christopher and Click, Cliff},
+  year = {2001},
+  title = {The Java Hotspot Server Compiler},
+  booktitle = {Symposium on JavaTM Virtual Machine Research and Technology Symposium (JVM)}
+}
+@inproceedings{myr10,
+  author = {Myreen, Magnus O.},
+  year = {2010},
+  title = {Verified Just-in-time Compiler on x86},
+  doi = {10.1145/1706299.1706313},
+  booktitle = popl
+}
+@inproceedings{guo11,
+  author = {Guo, Shu-yu and Palsberg, Jens},
+  year = {2011},
+  title = {The Essence of Compiling with Traces},
+  doi = {10.1145/1926385.1926450},
+  booktitle = popl
+}
+@inproceedings{dub14,
+  author = {Duboscq, Gilles and W{\"u}rthinger, Thomas and M{\"o}ssenb{\"o}ck, Hanspeter},
+  year = {2014},
+  title = {Speculation without regret: reducing deoptimization meta-data in the Graal compiler},
+  booktitle = {International Conference on Principles and Practices of Programming on the Java platform}
+}
+@inproceedings{dub13,
+  author = {Duboscq, Gilles and W\"{u}rthinger, Thomas and Stadler, Lukas and Wimmer, Christian and Simon, Doug and M\"{o}ssenb\"{o}ck, Hanspeter},
+  year = {2013},
+  title = {An Intermediate Representation for Speculative Optimizations in a Dynamic Compiler},
+  doi = {10.1145/2542142.2542143},
+  booktitle = {Workshop on Virtual Machines and Intermediate Languages (VMIL)}
+}
+@article{ber16,
+  author = {B{\'e}ra, Cl{\'e}ment and Miranda, Eliot and Denker, Marcus and Ducasse, St{\'e}phane},
+  year = {2016},
+  title = {Practical validation of bytecode to bytecode jit compiler dynamic deoptimization},
+  journal = {Journal of Object Technology (JOT)},
+  number = {2},
+  volume = {15}
+}
+@inproceedings{oda05,
+  author = {Odaira, Rei and Hiraki, Kei},
+  year = {2005},
+  title = {Sentinel PRE: Hoisting Beyond Exception Dependency with Dynamic Deoptimization},
+  doi = {10.1109/CGO.2005.32},
+  booktitle = cgo
+}
+@inproceedings{som06,
+  author = {Soman, Sunil and Krintz, Chandra},
+  year = {2006},
+  title = {Efficient and General On-Stack Replacement for Aggressive Program Specialization},
+  booktitle = {Proceedings of the International Conference on Software Engineering Research and Practice {\&} Conference on Programming Languages and Compilers, {SERP}}
+}
+@book{ecm16,
+  author = {{ECMA International}},
+  year = {2016},
+  title = {ECMAScript 2016 Language Specification},
+  edition = {7.0}
+}
+@misc{piz14,
+  author = {Pizlo, Filip},
+  year = {2014},
+  title = {Introducing the WebKit FTL JIT},
+  url = {https://webkit.org/blog/3362/introducing-the-webkit-ftl-jit/}
+}
+@inproceedings{hac12,
+  author = {Hackett, Brian and Guo, Shu-yu},
+  year = {2012},
+  title = {Fast and Precise Hybrid Type Inference for JavaScript},
+  doi = {10.1145/2254064.2254094},
+  booktitle = pldi
+}
+@inproceedings{log10,
+  author = {Logozzo, Francesco and Venter, Herman},
+  year = {2010},
+  title = {RATA: Rapid Atomic Type Analysis by Abstract Interpretation -- Application to JavaScript Optimization},
+  doi = {10.1007/978-3-642-11970-5_5},
+  booktitle = {International Conference on Compiler Construction}
+}
+@article{rco00,
+  author = {{R Core Team}},
+  year = {2000},
+  title = {R language definition},
+  journal = {R Foundation for Statistical Computing}
+}
+@inbook{and05,
+  author = {Anderson, Christopher and Giannini, Paola and Drossopoulou, Sophia},
+  year = {2005},
+  title = {Towards Type Inference for JavaScript},
+  doi = {10.1007/11531142_19},
+  booktitle = {: 19th European Conference, Glasgow, UK, July 25-29, 2005. Proceedings}
+}
+@article{ayc03,
+  author = {Aycock, John},
+  year = {2003},
+  title = {A Brief History of Just-in-time},
+  doi = {10.1145/857076.857077},
+  journal = {ACM Comput. Surv.},
+  number = {2},
+  volume = {35}
+}
+@inproceedings{beb10,
+  author = {Bebenita, Michael and Brandner, Florian and Fahndrich, Manuel and Logozzo, Francesco and Schulte, Wolfram and Tillmann, Nikolai and Venter, Herman},
+  year = {2010},
+  title = {{SPUR}: A Trace-based {JIT} Compiler for {CIL}},
+  doi = {10.1145/1869459.1869517},
+  booktitle = oopsla
+}
+@inproceedings{bur99,
+  author = {Burke, Michael G. and Choi, Jong-Deok and Fink, Stephen and Grove, David and Hind, Michael and Sarkar, Vivek and Serrano, Mauricio J. and Sreedhar, V. C. and Srinivasan, Harini and Whaley, John},
+  year = {1999},
+  title = {{The Jalape\~{n}o Dynamic Optimizing Compiler for Java}},
+  doi = {10.1145/304065.304113},
+  booktitle = {ACM Conference on Java Grande (JAVA)}
+}
+@inproceedings{cai07,
+  author = {Cai, Hongxu and Shao, Zhong and Vaynberg, Alexander},
+  year = {2007},
+  title = {Certified Self-Modifying Code},
+  booktitle = pldi07
+}
+@inproceedings{cha89,
+  author = {Chambers, Craig and Ungar, David},
+  year = {1989},
+  title = {Customization: Optimizing Compiler Technology for {SELF}, a Dynamically-typed Object-oriented Programming Language},
+  doi = {10.1145/73141.74831},
+  booktitle = pldi
+}
+@inproceedings{che15,
+  author = {Chevalier{-}Boisvert, Maxime and Feeley, Marc},
+  year = {2015},
+  title = {Simple and Effective Type Check Removal through Lazy Basic Block Versioning},
+  doi = {10.4230/LIPIcs.ECOOP.2015.101},
+  booktitle = ecoop
+}
+@inproceedings{con96,
+  author = {Consel, Charles and No\"{e}l, Fran\c{c}ois},
+  year = {1996},
+  title = {A General Approach for Run-time Specialization and Its Application to C},
+  doi = {10.1145/237721.237767},
+  booktitle = {Symposium on Principles of Programming Languages (POPL)}
+}
+@inproceedings{cou77,
+  author = {Cousot, Patrick and Cousot, Radhia},
+  year = {1977},
+  title = {Abstract Interpretation: {A} Unified Lattice Model for Static Analysis of Programs by Construction or Approximation of Fixpoints},
+  doi = {10.1145/512950.512973},
+  booktitle = {Conference Record of the Fourth {ACM} Symposium on Principles of Programming Languages, Los Angeles, California, USA, January 1977}
+}
+@inproceedings{dea95,
+  author = {Dean, Jeffrey and Grove, David and Chambers, Craig},
+  year = {1995},
+  title = {Optimization of Object-Oriented Programs Using Static Class Hierarchy Analysis},
+  booktitle = ecoop
+}
+@inproceedings{fin03a,
+  author = {Fink, Stephen J. and Qian, Feng},
+  year = {2003},
+  title = {Design, Implementation and Evaluation of Adaptive Recompilation with On-Stack Replacement},
+  doi = {10.1109/CGO.2003.1191549},
+  booktitle = cgo
+}
+@inproceedings{gal09,
+  author = {Gal, Andreas and Eich, Brendan and Shaver, Mike and Anderson,
+                  David and Mandelin, David and Haghighat, Mohammad R. and
+                  Kaplan, Blake and Hoare, Graydon and Zbarsky, Boris and
+                  Orendorff, Jason and Ruderman, Jesse and Smith, Edwin
+                  W. and Reitmaier, Rick and Bebenita, Michael and Chang,
+                  Mason and Franz, Michael},
+  year = {2009},
+  title = {Trace-based Just-in-time Type Specialization for Dynamic Languages},
+  doi = {10.1145/1542476.1542528},
+  booktitle = pldi}
+
+@inproceedings{hol92,
+  author = {H\"{o}lzle, Urs and Chambers, Craig and Ungar, David},
+  year = {1992},
+  title = {Debugging Optimized Code with Dynamic Deoptimization},
+  doi = {10.1145/143095.143114},
+  booktitle = pldi}
+
+@inproceedings{ish99,
+  author = {Ishizaki, Kazuaki and Kawahito, Motohiro and Yasue, Toshiaki and
+                  Takeuchi, Mikio and Ogasawara, Takeshi and Suganuma,
+                  Toshio and Onodera, Tamiya and Komatsu, Hideaki and
+                  Nakatani, Toshio},
+  year = {1999},
+  title = {Design, Implementation, and Evaluation of Optimizations in a
+                  Just-in-time Compiler},
+  doi = {10.1145/304065.304111},
+  booktitle = {ACM Conference on Java Grande (JAVA)}}
+  
+@article{kot08,
+  author = {Kotzmann, Thomas and Wimmer, Christian and M\"{o}ssenb\"{o}ck,
+                  Hanspeter and Rodriguez, Thomas and Russell, Kenneth and
+                  Cox, David},
+  year = {2008},
+  title = {Design of the {Java} {HotSpot} Client Compiler for {Java} 6},
+  doi = {10.1145/1369396.1370017},
+  journal = {ACM Trans. Archit. Code Optim.},
+  number = {1},
+  volume = {5}}
+
+@inproceedings{lam13a,
+  author = {Lameed, Nurudeen and Hendren, Laurie J.},
+  year = {2013},
+  title = {A modular approach to on-stack replacement in {LLVM}},
+  doi = {10.1145/2451512.2451541},
+  booktitle = vee}
+  
+@inproceedings{mar99,
+  author = {Marlet, Renaud and Consel, Charles and Boinot, Philippe},
+  year = {1999},
+  title = {Efficient Incremental Run-time Specialization for Free},
+  doi = {10.1145/301618.301681},
+  booktitle = pldi}
+  
+@inproceedings{pal01a,
+  author = {Paleczny, Michael and Vick, Christopher and Click, Cliff},
+  year = {2001},
+  title = {{The Java Hotspot Server Compiler}},
+  booktitle = {Symposium on Java Virtual Machine Research and Technology (JVM)}}
+
+@inproceedings{wur13,
+  author = {W{\"{u}}rthinger, Thomas and Wimmer, Christian and
+                  W{\"{o}}{\ss}, Andreas and Stadler, Lukas and Duboscq,
+                  Gilles and Humer, Christian and Richards, Gregor and
+                  Simon, Doug and Wolczko, Mario},
+  year = {2013},
+  title = {One {VM} to rule them all},
+  doi = {10.1145/2509578.2509581},
+  booktitle = onward}
+  
+@inproceedings{adl98,
+  author = {Adl-Tabatabai, Ali-Reza and Cierniak, Micha\l and Lueh,
+                  Guei-Yuan and Parikh, Vishesh M. and Stichnoth, James M.},
+  year = {1998},
+  title = {Fast, Effective Code Generation in a Just-in-time {Java} Compiler},
+  doi = {10.1145/277650.277740},
+  booktitle = pldi}
+  
+@inproceedings{dis14,
+  author = {Dissegna, Stefano and Logozzo, Francesco and Ranzato, Francesco},
+  year = {2014},
+  title = {Tracing Compilation by Abstract Interpretation},
+  doi = {10.1145/2535838.2535866},
+  booktitle = popl}
+  
+@inproceedings{bal00,
+  author = {Bala, Vasanth and Duesterwald, Evelyn and Banerjia, Sanjeev},
+  year = {2000},
+  title = {Dynamo: A Transparent Dynamic Optimization System},
+  doi = {10.1145/349299.349303},
+  booktitle = pldi  }
+  
+@article{aus96,
+  author = {Auslander, Joel and Philipose, Matthai and Chambers, Craig and
+                  Eggers, Susan J. and Bershad, Brian N.},
+  year = {1996},
+  title = {Fast, Effective Dynamic Compilation},
+  doi = {10.1145/249069.231409},
+  journal = {SIGPLAN Not.},
+  number = {5},
+  volume = {31}}
+  
+@article{eng94,
+  author = {Engler, Dawson R. and Proebsting, Todd A.},
+  year = {1994},
+  title = {DCG: An Efficient, Retargetable Dynamic Code Generation System},
+  doi = {10.1145/381792.195567},
+  journal = {SIGOPS Oper. Syst. Rev.},
+  number = {5},
+  volume = {28}
+}
+@article{eng96,
+  author = {Engler, Dawson R.},
+  year = {1996},
+  title = {VCODE: A Retargetable, Extensible, Very Fast Dynamic Code Generation System},
+  doi = {10.1145/249069.231411},
+  journal = {SIGPLAN Not.},
+  number = {5},
+  volume = {31}
+}
+@inproceedings{alm02,
+  author = {Almasi, George S. and Padua, David A.},
+  year = {2002},
+  title = {MaJIC: Compiling {MATLAB} for Speed and Responsiveness},
+  booktitle = pldi
+}
+@inproceedings{alm00,
+  author = {Almasi, George S. and Padua, David A.},
+  year = {2000},
+  title = {MaJIC: A {Matlab} Just-In-time Compiler}
+}
+@article{hal09,
+  author = {Hall, Mary W. and Padua, David A. and Pingali, Keshav},
+  year = {2009},
+  title = {Compiler research: the next 50 years},
+  journal = {Commun. ACM},
+  number = {2},
+  volume = {52}
+}
+@inproceedings{sab92,
+  author = {Sabry, Amr and Felleisen, Matthias},
+  year = {1992},
+  title = {Reasoning About Programs in Continuation-passing Style.},
+  doi = {10.1145/141471.141563},
+  booktitle = {Conference on LISP and Functional Programming (LFP)}
+}
+@inproceedings{kil73,
+  author = {Kildall, Gary A.},
+  year = {1973},
+  title = {A Unified Approach to Global Program Optimization},
+  doi = {10.1145/512927.512945},
+  booktitle = popl
+}
+@article{ler08,
+  author = {Leroy, Xavier and Blazy, Sandrine},
+  year = {2008},
+  title = {Formal verification of a {C}-like memory model and its uses for verifying program transformations},
+  journal = {Journal of Automated Reasoning},
+  number = {1},
+  volume = {41}
+}
+@inproceedings{zha13,
+  author = {Zhao, Jianzhou and Nagarakatte, Santosh and Martin, Milo M.K. and Zdancewic, Steve},
+  year = {2013},
+  title = {Formal Verification of SSA-based Optimizations for LLVM},
+  doi = {10.1145/2491956.2462164},
+  booktitle = pldi
+}
+@article{cyt91,
+  author = {Cytron, Ron and Ferrante, Jeanne and Rosen, Barry K. and Wegman, Mark N. and Zadeck, F. Kenneth},
+  year = {1991},
+  title = {Efficiently Computing Static Single Assignment Form and the Control Dependence Graph},
+  doi = {10.1145/115372.115320},
+  journal = {ACM Transactions on Programming Languages and Systems (TOPLAS)}
+}
+@inproceedings{and14,
+  author = {Andreasen, Esben and M{\o}ller, Anders},
+  year = {2014},
+  title = {Determinacy in Static Analysis for jQuery},
+  doi = {10.1145/2660193.2660214},
+  booktitle = oopsla
+}
+@inproceedings{sri12,
+  author = {Sridharan, Manu and Dolby, Julian and Chandra, Satish and Sch\"{a}fer, Max and Tip, Frank},
+  year = {2012},
+  title = {Correlation Tracking for Points-to Analysis of Javascript},
+  doi = {10.1007/978-3-642-31057-7_20},
+  booktitle = ecoop
+}
+@inproceedings{par15,
+  author = {Park, Changhee and Ryu, Sukyoung},
+  year = {2015},
+  title = {{Scalable and Precise Static Analysis of JavaScript Applications via Loop-Sensitivity}},
+  doi = {10.4230/LIPIcs.ECOOP.2015.735},
+  booktitle = ecoop
+}
+@inproceedings{jen09,
+  author = {Jensen, Simon Holm and M{\o}ller, Anders and Thiemann, Peter},
+  year = {2009},
+  title = {Type Analysis for JavaScript},
+  doi = {10.1007/978-3-642-03237-0_17},
+  booktitle = {International Symposium on Static Analysis (SAS)}
+}
+@inproceedings{ser18,
+  author = {Serrano, Manuel},
+  year = {2018},
+  title = {JavaScript AOT Compilation},
+  doi = {10.1145/3276945.3276950},
+  booktitle = dls
+}
+@inproceedings{tob10,
+  author = {Tobin-Hochstadt, Sam and Felleisen, Matthias},
+  year = {2010},
+  title = {Logical Types for Untyped Languages},
+  doi = {10.1145/1863543.1863561},
+  booktitle = icfp
+}
+@inproceedings{wur13a,
+  author = {W\"{u}rthinger, Thomas and Wimmer, Christian and W\"{o}\ss, Andreas and Stadler, Lukas and Duboscq, Gilles and Humer, Christian and Richards, Gregor and Simon, Doug and Wolczko, Mario},
+  year = {2013},
+  title = {One VM to Rule Them All},
+  doi = {10.1145/2509578.2509581},
+  booktitle = onward
+}
+@inproceedings{wur17,
+  author = {W\"{u}rthinger, Thomas and Wimmer, Christian and Humer, Christian and W\"{o}\ss, Andreas and Stadler, Lukas and Seaton, Chris and Duboscq, Gilles and Simon, Doug and Grimmer, Matthias},
+  year = {2017},
+  title = {Practical Partial Evaluation for High-performance Dynamic Language Runtimes},
+  doi = {10.1145/3062341.3062381},
+  series = {PLDI}
+}
+@article{nis00,
+  author = {Nishizaki, Shin-Ya},
+  year = {2000},
+  title = {A polymorphic environment calculus and its type-inference algorithm},
+  journal = {Higher-Order and Symbolic Computation}
+}
+@techreport{nie03,
+  author = {Nierstrasz, Oscar},
+  year = {2003},
+  title = {Contractual Types},
+  url = {http://scg.unibe.ch/archive/papers/Nier03bcontractualTypes.pdf}
+}
+@book{han15,
+  author = {Hanson, Chris and of Technology. Scheme Team, Massachusetts Institute},
+  year = {2015},
+  title = {MIT/GNU Scheme Reference Manual}
+}
+@article{lam88,
+  author = {Lampson, Butler and Burstall, Rod},
+  year = {1988},
+  title = {Pebble, a kernel language for modules and abstract data types},
+  journal = {Information and Computation}
+}
+@article{spe09,
+  author = {Sperber, Michael and Dybvig, R Kent and Flatt, Matthew and Van Straaten, Anton and Findler, Robby and Matthews, Jacob},
+  year = {2009},
+  title = {Revised 6 report on the algorithmic language Scheme},
+  journal = {Journal of Functional Programming}
+}
+@inproceedings{mar16,
+  author = {Marr, Stefan and Daloze, Benoit and M\"{o}ssenb\"{o}ck, Hanspeter},
+  year = {2016},
+  title = {Cross-language Compiler Benchmarking: Are We Fast Yet?},
+  doi = {10.1145/2989225.2989232},
+  booktitle = dls
+}
+@inproceedings{ros88,
+  author = {Rosen, B. K. and Wegman, M. N. and Zadeck, F. K.},
+  year = {1988},
+  title = {Global Value Numbers and Redundant Computations},
+  doi = {10.1145/73560.73562},
+  booktitle = popl
+}
+@inproceedings{bar17,
+  title={Virtual Machine Warmup Blows Hot and Cold},
+  author={Barrett, Edd and Bolz-Tereick, Carl Friedrich and Killick, Rebecca
+                  and Mount, Sarah and Tratt, Laurence},
+  booktitle=oopsla,
+  doi = {10.1145/3133876}, 
+  year={2017},
+}
+
+@inproceedings{mir11,
+  author = {Miranda, Eliot},
+  year = {2011},
+  title = {The Cog Smalltalk Virtual Machine},
+  booktitle = vmil
+}
+@article{bez12,
+  author = {Bezanson, Jeff and Karpinski, Stefan and Shah, Viral B and Edelman, Alan},
+  year = {2012},
+  title = {Julia: A fast dynamic language for technical computing},
+  journal = {arXiv preprint arXiv:1209.5145}
+}
+@inproceedings{liu19,
+  author = {Liu, Lun and Millstein, Todd and Musuvathi, Madanlal},
+  year = {2019},
+  title = {Accelerating Sequential Consistency for Java with Speculative Compilation},
+  doi = {10.1145/3314221.3314611},
+  booktitle = pldi,
+  url = {https://doi.org/10.1145/3314221.3314611}
+}
+@article{sch86,
+  author = {Schaffert, Craig and Cooper, Topher and Bullis, Bruce and Kilian, Mike and Wilpolt, Carrie},
+  year = {1986},
+  title = {An Introduction to Trellis/Owl},
+  doi = {10.1145/960112.28699},
+  booktitle = oopsla,
+  url = {https://doi.org/10.1145/960112.28699},
+  number = {11},
+  volume = {21}}
+
+@inproceedings{hos90,
+  author = {Hosking, Antony L and Eliot, J and Moss, B},
+  year = {1990},
+  title = {Towards compile-time optimisations for persistence},
+  booktitle = {International Workshop on Persistent Object Systems},
+  isbn = {978-1558601680},
+}
+
+@inproceedings{dea95a,
+  author = {Dean, Jeffrey and Chambers, Craig and Grove, David},
+  year = {1995},
+  title = {Selective Specialization for Object-Oriented Languages},
+  doi = {10.1145/223428.207119},
+  booktitle = pldi}
+
+@article{hol94a,
+  author = {H\"{o}lzle, Urs and Ungar, David},
+  year = {1994},
+  title = {Optimizing Dynamically-Dispatched Calls with Run-Time Type Feedback},
+  doi = {10.1145/178243.178478},
+  booktitle = pldi,
+  url = {https://doi.org/10.1145/178243.178478}
+}
+@article{cal86,
+  author = {Callahan, David and Cooper, Keith D. and Kennedy, Ken and
+                  Torczon, Linda},
+  year = {1986},
+  title = {Interprocedural Constant Propagation},
+  doi = {10.1145/13310.13327},
+  booktitle = {Symposium on Compiler Construction},
+  url = {https://doi.org/10.1145/13310.13327}
+}
+@phdthesis{wha99,
+  author = {Whaley, John},
+  year = {1999},
+  title = {Dynamic optimization through the use of automatic runtime specialization},
+  school = {Stanford}}
+
+@webpage{shootout,
+  author = {Isaac Gouy},
+  title = {Computer Language Benchmarks Game},
+  url = {https://benchmarksgame-team.pages.debian.net/benchmarksgame/},
+  year = {2020}}
+
+@Article{flexclust,
+  author = {Friedrich Leisch},
+  title = {A Toolbox for K-Centroids Cluster Analysis},
+  journal = {Computational Statistics and Data Analysis},
+  year = {2006},
+  volume = {51},
+  number = {2}}
+
+@misc{rebench,
+  author = {Marr, Stefan},
+  doi = {10.5281/zenodo.1311762},
+  month = {August},
+  note = {Version 1.0},
+  publisher = {GitHub},
+  title = {ReBench: Execute and Document Benchmarks Reproducibly},
+  year = 2018}
+
+@misc{flu20-artifact,
+  author    = {Olivier Fl{\"{u}}ckiger and Guido Chari and Ming{-}Ho Yee and Jan Jecmen and
+                  Jakob Hain and Jan Vitek},
+  title =    {Artifact for ``Contextual Dispatch for Function Specialization''},
+  year = {2020},
+  doi = {10.5281/zenodo.3973073}
+}
+
+@inproceedings{poe20,
+  author = {Gabriel Poesia and Fernando Magno Quint\~{a}o Pereira},
+  year = {2020},
+  title = {Dynamic Dispatch of Context-Sensitive Optimizations},
+  booktitle = oopsla,
+  doi = {10.1145/3428235}
+}
+
+@phdthesis{hal91,
+  title={Managing interprocedural optimization},
+  author={Hall, Mary Wolcott},
+  year={1991},
+  url={https://hdl.handle.net/1911/16446},
+}
+
+@inproceedings{dra09,
+  title={Compiling generics through user-directed type specialization},
+  author={Dragos, Iulian and Odersky, Martin},
+  booktitle=icooolps,
+  year={2009},
+  doi={10.1145/1565824.1565830},
+}
+
+@inproceedings{ken01,
+  title={Design and implementation of generics for the .NET Common language runtime},
+  author={Kennedy, Andrew and Syme, Don},
+  booktitle=pldi,
+  year={2001},
+  doi={10.1145/378795.378797},
+}
+
+@inproceedings{car98,
+  title={Compatible genericity with run-time types for the Java programming language},
+  author={Cartwright, Robert and Steele Jr, Guy L},
+  journal=oopsla,
+  year={1998},
+  doi={10.1145/286942.286958},
+}
+
+@article{das03,
+  title={Function inlining versus function cloning},
+  author={Das, Dibyendu},
+  journal={ACM SIGPLAN Notices},
+  volume={38},
+  year={2003},
+  doi={10.1145/885638.885645},
+}
+
+@article{coo93,
+  title={A methodology for procedure cloning},
+  author={Cooper, Keith D and Hall, Mary W and Kennedy, Ken},
+  journal={Computer Languages},
+  volume={19},
+  year={1993},
+  doi={10.1016/0096-0551(93)90005-L}
+}
+
+@inproceedings{ple95,
+  title={Type directed cloning for object-oriented programs},
+  author={Plevyak, John and Chien, Andrew A},
+  booktitle={International Workshop on Languages and Compilers for Parallel Computing},
+  year={1995},
+  doi={10.1007/BFb0014224},
+}
+
+@inproceedings{hol91,
+  title={Optimizing dynamically-typed object-oriented languages with polymorphic inline caches},
+  author={H{\"o}lzle, Urs and Chambers, Craig and Ungar, David},
+  booktitle=ecoop,
+  year={1991},
+  doi={10.1007/BFb0057013},
+}
+
+@inproceedings{cos13,
+  title={Just-in-time value specialization},
+  author={Costa, Igor and Alves, Pericles and Santos, Henrique Nazar{\'e} and Pereira, Fernando Magno Quintao},
+  booktitle=cgo,
+  year={2013},
+  doi={10.1109/CGO.2013.6495006},
+}
+
+@inproceedings{ari17,
+  TITLE = {{Dynamic Function Specialization}},
+  AUTHOR = {Ap, Arif Ali and Rohou, Erven},
+  BOOKTITLE = {{International Conference on Embedded Computer Systems: Architectures, MOdeling and Simulation}},
+  YEAR = {2017},
+  DOI = {10.1109/SAMOS.2017.8344624},
+}
+
+@inproceedings{vee14,
+   author    ="Toms Kalibera and Petr Maj and Floreal Morandat and Jan Vitek",
+   title     ="A Fast Abstract Syntax Tree Interpreter for {R}", 
+   booktitle ="Conference on Virtual Execution Environments (VEE)",
+   doi       ="10.1145/2576195.2576205",
+   year      = 2014}
+
+
+
+@ARTICLE{recommenderlab,
+  title         = "Recommenderlab: An {R} framework for developing and testing
+                   recommendation algorithms",
+  author        = "Hahsler, Michael",
+  year          =  2022,
+  doi = {10.48550/ARXIV.2205.12371},
+  howpublished = "arXiv:2205.12371 [cs.IR]",
+  month = "May"
+}
+@article{contextual-dispatch,
+    author = {Fl\"{u}ckiger, Olivier and Chari, Guido and Yee, Ming-Ho and Je\v{c}men, Jan and Hain, Jakob and Vitek, Jan},
+    title = {Contextual Dispatch for Function Specialization},
+    year = {2020},
+    volume = {4},
+    number = {OOPSLA},
+    doi = {10.1145/3428288},
+    journal = {Proc. ACM Program. Lang.},
+}
+
+@misc{openj9,
+  author={IBM},
+  title = {{The Eclipse OpenJ9 Virtual Machine}},
+  howpublished = "www.eclipse.org/openj9/",
+  year = 2020
+}
+
+@inproceedings{hotspot,
+author = {Paleczny, Michael and Vick, Christopher and Click, Cliff},
+title = {{The Java Hotspot Server Compiler}},
+year = {2001},
+booktitle = {Symposium on Java Virtual Machine Research and Technology (JVM)},
+}
+
+@inproceedings{aot-omr,
+author = {Krylov, Georgiy and Dueck, Gerhard W. and Kent, Kenneth B. and Maier, Daryl and D'Souza, Irwin},
+title = {Ahead-of-Time Compilation in OMR},
+year = {2019},
+booktitle = {Conference on Computer Science and Software Engineering (CASCON)},
+}
+
+@inproceedings{aot-survey,
+author = {Thom, Mark and Dueck, Gerhard W. and Kent, Kenneth and Maier, Daryl},
+title = {A Survey of Ahead-of-Time Technologies in Dynamic Language Environments},
+year = {2018},
+booktitle = {Conference on Computer Science and Software Engineering (CASCON)},
+}
+
+@inproceedings{r-melts-brains,
+author = {Fl\"{u}ckiger, Olivier and Chari, Guido and Je\v{c}men, Jan and Yee, Ming-Ho and Hain, Jakob and Vitek, Jan},
+title = {R Melts Brains: An IR for First-Class Environments and Lazy Effectful Arguments},
+year = {2019},
+doi = {10.1145/3359619.3359744},
+booktitle = {Symposium on Dynamic Languages (DLS)},
+}
+
+@inproceedings{genthat,
+  YEAR = {2018},
+  TITLE = {{Tests from traces: automated unit test extraction for R}},
+  AUTHOR = {K{\v r}ikava, Filip and Vitek, Jan},
+  BOOKTITLE = {Symposium on Software Testing and Analysis (ISSTA)},
+  DOI = {10.1145/3213846.3213863},
+}
+
+@misc{hashfn,
+  author = {Daniel J. Bernstein},
+  title = {{djb2 hash function}},
+  howpublished = "\url{www.cse.yorku.ca/~oz/hash.html}",
+  year = {1991},
+}
+
+@misc{rmarkdown,
+  author = {Xie, Yihui and others},
+  title = {R Markdown project},
+  howpublished = "\url{rmarkdown.rstudio.com/}",
+  year = {2014},
+}
+
+@misc{raytracer,
+    author = {Tyler Morgan},
+    title = {Throwing Shade Ray Tracer},
+    year = {2008},
+    howpublished = "\url{www.tylermw.com/throwing-shade/}",
+}
+
+@misc{genomicsclass,
+  author = {Love, Mike and Irizarry, Rafael and Carey, Vince and others},
+  title = {{Genomicsclass/labs: RMD source files for the Harvardx series ph525x}},
+  howpublished = "\url{github.com/genomicsclass/labs}",
+  year = {2013},
+}
+
+@misc{rbenchmarking,
+  author = {RBenchmarking},
+  title = {{RBenchmarking}},
+  howpublished = "\url{github.com/reactorlabs/RBenchmarking}",
+  year = {2018},
+}
+
+@article{graalnative,
+ author = {Wimmer, Christian and others},
+ title = {Initialize Once, Start Fast: Application Initialization at Build Time},
+ year = {2019},
+ doi = {10.1145/3360610},
+journal = {Proc. ACM Program. Lang.},
+ number = {OOPSLA}
+ }
+
+@article{manuel,
+  author = {Serrano, Manuel},
+  title = {Of JavaScript AOT Compilation Performance},
+  year = {2021},
+  doi = {10.1145/3473575},
+  journal = {Proc. ACM Program. Lang.},
+  number = {ICFP}}
+
+
+@inproceedings{deoptless,
+author = {Fl\"{u}ckiger, Olivier and Je\v{c}men, Jan and Krynski, Sebasti\'{a}n and Vitek, Jan},
+title = {Deoptless: Speculation with Dispatched on-Stack Replacement and Specialized Continuations},
+year = {2022},
+doi = {10.1145/3519939.3523729},
+booktitle = {Conference on Programming Language Design and Implementation (PLDI)},
+}
+
+@inproceedings{quicksilver-2000,
+author = {Serrano, Mauricio and Bordawekar, Rajesh and Midkiff, Sam and Gupta, Manish},
+title = {Quicksilver: A Quasi-Static Compiler for Java},
+year = {2000},
+doi = {10.1145/353171.353176},
+booktitle = {Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA)},
+}
+
+@inproceedings{quicksilver-2001,
+author = {Joisha, Pramod G. and Midkiff, Samuel P. and Serrano, Mauricio J. and Gupta, Manish},
+title = {A Framework for Efficient Reuse of Binary Code in Java},
+year = {2001},
+doi = {10.1145/377792.377902},
+booktitle = {Conference on Supercomputing (SC)},
+}
+
+@article{ShareJIT,
+author = {Xu, Xiaoran and Cooper, Keith and Brock, Jacob and Zhang, Yan and Ye, Handong},
+title = {ShareJIT: JIT Code Cache Sharing across Processes and Its Practical Implementation},
+year = {2018},
+number = {OOPSLA},
+doi = {10.1145/3276494},
+journal = {Proc. ACM Program. Lang.},
+}
+
+@inproceedings{j9-profile,
+author = {Arnold, Matthew and Welc, Adam and Rajan, V. T.},
+title = {Improving Virtual Machine Performance Using a Cross-Run Profile Repository},
+year = {2005},
+doi = {10.1145/1094811.1094835},
+booktitle = {Conference on Object-Oriented Programming, Systems, Languages, and Applications (OOPSLA)},
+}
+
+@inproceedings{hhvm-jump-start,
+author={Ottoni, Guilherme and Liu, Bin},
+booktitle={Symposium on Code Generation and Optimization (CGO)},
+title={HHVM Jump-Start: Boosting Both Warmup and Steady-State Performance at Scale},
+year={2021},
+doi={10.1109/CGO51591.2021.9370314}
+}
+
+@inproceedings{zhuykov1,
+author={Zhuykov, Roman and Vardanyan, Vahagn and Melnik, Dmitry and Buchatskiy, Ruben and Sharygin, Eugeniy},
+booktitle={Computer Science and Information Technologies (CSIT)},
+title={Augmenting JavaScript JIT with ahead-of-time compilation},
+year={2015},
+doi={10.1109/CSITechnol.2015.7358262}
+}
+
+@article{zhuykov2,
+    author={Zhuykov, Roman and Sharygin, Eugeniy},
+    title = {Ahead-of-time compilation of JavaScript programs},
+    year = {2017},
+    volume = {43},
+    number = {1},
+    doi = {10.1134/S036176881701008X},
+    journal = {Programming and Computer Software}}
+
+
+@inproceedings {jitserver,
+author = {Alexey Khrabrov and Marius Pirvu and Vijay Sundaresan and Eyal de Lara},
+title = {{JITServer}: Disaggregated Caching {JIT} Compiler for the {JVM} in the Cloud},
+booktitle = {2022 USENIX Annual Technical Conference (USENIX ATC 22)},
+year = {2022},
+isbn = {978-1-939133-29-62},
+address = {Carlsbad, CA},
+pages = {869--884},
+url = {https://www.usenix.org/conference/atc22/presentation/khrabrov},
+publisher = {USENIX Association},
+month = jul,
+}

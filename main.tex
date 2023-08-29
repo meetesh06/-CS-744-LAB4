@@ -1,0 +1,651 @@
+\documentclass[final,5p,times,authoryear]{elsarticle}
+\usepackage{amssymb}
+\usepackage{lipsum}
+
+\usepackage{xcolor}
+\definecolor{dkgreen}{rgb}{0,0.5,0}
+\definecolor{green}{rgb}{0,0.5,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.52}
+
+
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily,
+  showstringspaces=false,
+  commentstyle=\color{olive},
+  keywordstyle=\color{darkgray}
+}
+
+\makeatletter
+\patchcmd{\ps@pprintTitle}
+  {Preprint submitted}
+  {Submitted}
+  {}{}
+\makeatother
+
+\journal{CS 744, Autmn 2023, Prof. Varsha Apte}
+
+
+\lstdefinestyle{codeBash}{
+  language=bash,
+  backgroundcolor=\color{gray!10},
+  % linewidth=0.9\linewidth,
+  showstringspaces=false,
+  % columns=flexible,
+  basicstyle={\ttfamily\small},
+  % numbers=left,
+  numberstyle=\scriptsize\color{black},
+  keywordstyle=\ttfamily\color{mauve},
+  numbersep=8pt,
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=false,
+  tabsize=2,
+  xleftmargin=0.4cm,
+  frame=bottomline, 
+  framexleftmargin=0.5em,
+  framesep=2pt,
+  escapechar=|,
+}
+\lstset{style=codeBash}
+
+\begin{document}
+
+\begin{frontmatter}
+    
+\title{
+  Lab 1: Hello OS! \\
+  \small CS744 (Design and Engineering of Computing Systems), 
+  Autumn 2023
+  }
+
+\author{Meetesh Kalpesh Mehta ({\tt23D0361})}
+\ead{23d0361@iitb.ac.in}
+\address{Indian Institute of Bombay, India}
+
+\end{frontmatter}
+
+\section{The OS View}
+
+This part of the assignment present various useful tools to control and monitor the operating system and the processes running on it. 
+
+\subsection{Tools}
+\noindent
+{\tt man} is known as the system's {\bf manual pager} of the system. 
+Argument given is usually a program, utility or a function.
+It can also be used to access particular sections of the manual using the {\tt -s} argument.
+
+
+% 
+% SYSTEM CALL
+% 
+\paragraph{(i) {\tt write}}
+\noindent
+{\tt write(2)} is a system call and its documentation belongs to the {\it Linux Programmer's Manual}. Listing~\ref{fig:write_system_call} shows the different commands to access this documentation.
+\begin{lstlisting}[
+  captionpos=b, 
+  caption={Code snippet showing access to the {\tt write} system call.},
+  label={fig:write_system_call},
+  style=codeBash]
+man 'write(2)'
+man -s 2 write
+man write.2
+\end{lstlisting}
+
+% 
+% TOP COMMAND
+% 
+\paragraph{(ii) {\tt top}}is a linux  user command that is used to display linux processes in real time. Listing~\ref{fig:top} shows the command to display the processes belonging to {\tt labuser}.
+\begin{lstlisting}[
+  captionpos=b, 
+  caption={Code snippet showing the use of {\tt top} command to display processes belonging to {\tt labuser}.},
+  label={fig:top},
+  style=codeBash]
+top -U labuser
+\end{lstlisting}
+
+
+% 
+% PS COMMAND
+% 
+\paragraph{(iii) {\tt ps}}is a linux user command that is used to get a snapshot of the linux processes. Listing~\ref{fig:ps} shows the command to display all the processes. ({\it `{\tt -A}' parameter is identical to `{\tt -e}'}).
+\begin{lstlisting}[
+  captionpos=b, 
+  caption={Code snippet showing the use of {\tt ps} command to display all the processes running on the system.},
+  label={fig:ps},
+  style=codeBash]
+ps -A
+ps -e
+\end{lstlisting}
+
+% 
+% IOSTAT COMMAND
+% 
+\paragraph{(iv) {\tt iostat}}
+is a linux command (from the {\it Linux User Manual}) that is used for reporting the statistics of the CPU and other system devices. Listing~\ref{fig:iostat} shows the commands that can be used to see average CPU utilization statistics. Additionally, output can be limited to exclude the other devices in the report using the `{\tt -c}' flag, also the `{\tt -y}' flag omits the first report when calculating the average.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt iostat} command.},label={fig:iostat},style=codeBash]
+iostat # CPU and other devices
+iostat -c # Only CPU
+iostat -y # Omits the first report
+\end{lstlisting}
+
+% 
+% STRACE COMMAND
+% 
+\paragraph{(v) {\tt strace}}
+is a linux command (belonging to the {\it General Commands Manual}) that is used display all the system calls and signals made by a process. Listing~\ref{fig:strace} shows the command to display all the system calls and  signals by {\tt ls}.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt strace} command to display the system calls made by {\tt ls}.},label={fig:strace},style=codeBash]
+strace ls
+\end{lstlisting}
+
+% 
+% LSOF COMMAND
+% 
+\paragraph{(vi) {\tt lsof}}
+is a linux command (belonging to the {\it System's Manager Manual}) that is used display all the open files. Listing~\ref{fig:lsof} shows the command to display all the files opened by {\tt labuser}.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt lsof} command to display list of opened files by {\tt labuser}.},label={fig:lsof},style=codeBash]
+lsof -u labuser
+\end{lstlisting}
+
+
+% 
+% LSBLK COMMAND
+% 
+\paragraph{(vii) {\tt lsblk}}
+is a linux command (belonging to the {\it System's Administration Manual}) that is used display information about the available block devices. Listing~\ref{fig:lsblk} shows the command to display all the columns that are stored (including owners, permissions and so on), however, for readability limited number of columns can be read using `{\tt -o}' command (the second one in the following Listing).
+\begin{lstlisting}[
+  captionpos=b, 
+  caption={Code snippet showing the use of {\tt lsblk} command to list all the block devices along with all the columns available.},
+  label={fig:lsblk},
+  style=codeBash]
+lsblk -O # Redirection of the output makes the output easier to read
+lsblk -o OWNER,MODE,TYPE,FSTYPE,MOUNTPOINT
+\end{lstlisting}
+
+
+% 
+% PSTREE COMMAND
+% 
+\paragraph{(viii) {\tt pstree}}
+is a linux user command that is used display a tree of processes. Listing~\ref{fig:pstree} shows the command to display the process tree using ASCII characters.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt pstree} command to display the process tree using ASCII characters.},label={fig:pstree},style=codeBash]
+$ pstree -a # use ascii characters to draw the tree
+\end{lstlisting}
+
+
+
+% 
+% LSHW COMMAND
+% 
+\paragraph{(ix) {\tt lshw}}
+is a linux command that is used to detail the hardware configuration of the machine. Listing~\ref{fig:lshw} shows the command to list the hardware and output the result in JSON format.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt lshw} command to list the hardware and print the result in JSON format.},label={fig:lshw},style=codeBash]
+$ lshw -json # output in json format
+\end{lstlisting}
+
+
+% 
+% LSPCI COMMAND
+% 
+\paragraph{(x) {\tt lspci}}
+is a linux command (from the {\it PCI Utilities Manual}) that is used to list all the PCI devices. Listing~\ref{fig:lspci} shows the command to list PCI devices in simple format.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt lspci} command to list the PCI devices in a simple format.},label={fig:lspci},style=codeBash]
+$ lspci -m # output in simple format
+\end{lstlisting}
+
+% 
+% LSCPU COMMAND
+% 
+\paragraph{(xi) {\tt lscpu}}
+is a linux user command that is used to display information about the CPU architecture. Listing~\ref{fig:lscpu} shows the CPU information in a human readable format (using flag `{\tt -e}'), also the flag `{\tt --all}' ensures that even the offline CPUs are listed.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt lscpu} command to display CPU architecture information in a human readable format.},label={fig:lscpu},style=codeBash]
+$ lscpu --all -e # output in simple format
+\end{lstlisting}
+
+% 
+% DIG COMMAND
+% 
+\paragraph{(xii) {\tt dig}}
+is a linux command from the {\it Bind 9 Manual} that is used for interrogating the DNS server. Listing~\ref{fig:dig} shows the command to query the DNS for the IITB website.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt dig} command to query DNS server for the IITB website.},label={fig:dig},style=codeBash]
+$ dig www.iitb.ac.in # query DNS for iitb website
+\end{lstlisting}
+
+% 
+% NETSTAT COMMAND
+% 
+\paragraph{(xiii) {\tt netstat}}
+is a linux command (belonging to the {\it System's Administration Manual}) that is used display network information including routing tables, interfaces and many more. Listing~\ref{fig:netstat} shows the command to list the summary statistics for each protocol.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt netstat} command to display summart status for each protocol.},label={fig:netstat},style=codeBash]
+$ netstat -s # summary statistics for each protocol
+\end{lstlisting}
+
+% 
+% DF COMMAND
+% 
+\paragraph{(ix) {\tt df}}
+is a linux user command that is used to report file system disk space usage. Listing~\ref{fig:df} shows the command to display disk space usage in a human readable format.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt df} command to display disk space usage information in human readable format.},label={fig:df},style=codeBash]
+$ df -h 
+\end{lstlisting}
+
+% 
+% watch COMMAND
+% 
+\paragraph{(xv) {\tt watch}}
+is a linux user command that is used to execute a program periodically. Listing~\ref{fig:watch} shows the usage of {\tt watch} command to execute {\tt date} (command to report date and time, in this example only time was displayed) every one second.
+\begin{lstlisting}[captionpos=b, caption={Code snippet showing the use of {\tt watch} command to run the {\tt date} command every one second.},label={fig:watch},style=codeBash]
+$ watch -n 1 date "+%T" # execute date command every one second 
+\end{lstlisting}
+
+\pagebreak
+
+% 
+% 
+% PART 2
+% 
+% 
+
+\subsection{The proc file system}
+
+\paragraph{\bf 1(a), (b), (c)}
+The following information was collected by running {\tt lscpu} command shown in Listing \ref{fig:proc1_a_b_c}.  
+
+(a) Architecture: {\it x86\_64},  
+Byte Order: {\it Little Endian}, 
+Address sizes: {\it 48 bits physical, 48 bits virtual} 
+
+(b) Sockets: {\it 1}, Cores: {\it 8}, CPU(s): {\it 16}
+
+(c) L1i: {\it 256 KiB}, L1d: {\it 256 KiB}, L2: {\it 4 MiB}, L3: {\it 16MiB}.
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing the various CPU related statistics for Ryzen 7 based system.},label={fig:proc1_a_b_c},style=codeBash]
+mee@mee-MS-7C96:~/dev$ lscpu
+Architecture:            x86_64
+  CPU op-mode(s):        32-bit, 64-bit
+  Address sizes:         48 bits physical, 48 bits virtual
+  Byte Order:            Little Endian
+CPU(s):                  16
+  On-line CPU(s) list:   0-15
+Vendor ID:               AuthenticAMD
+  Model name:            AMD Ryzen 7 5700G with Radeon Graphics
+    CPU family:          25
+    Model:               80
+    Thread(s) per core:  2
+    Core(s) per socket:  8
+    Socket(s):           1
+    Stepping:            0
+    Frequency boost:     enabled
+    CPU max MHz:         3800.0000
+    CPU min MHz:         1400.0000
+    BogoMIPS:            7586.04
+...
+Caches (sum of all):     
+  L1d:                   256 KiB (8 instances)
+  L1i:                   256 KiB (8 instances)
+  L2:                    4 MiB (8 instances)
+  L3:                    16 MiB (1 instance)
+...  
+\end{lstlisting}
+
+\paragraph{\bf 1(d)}
+The following information was obtained by running the {\tt free} command as shown in Listing~\ref{fig:proc1_d}. The system has 16GB of primary memory and 2GB of swap (secondary) memory; they have 8GB and 0GB free respectively. 
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing memory usage status.},label={fig:proc1_d},style=codeBash]
+mee@mee-MS-7C96:~$ free --giga
+      total ...  free ...
+Mem:  16    ...   8   ...
+Swap:  2    ...   0   ...
+\end{lstlisting}
+
+
+\paragraph{\bf 1(e)}
+{\tt top} command was used to obtain the number of total, running, sleeping, stopped and zombie processes (the second line displays the desired information). This command is shown in the Listing~\ref{fig:proc1_e}. 
+\begin{lstlisting}[captionpos=b, caption={Snippet showing usage of {\tt top} command to check the number of total, running, sleeping, stopped and zombie processes.},label={fig:proc1_e},style=codeBash]
+top # just top works, nothing was needed
+
+top - 22:13:08 up 12:32,  1 user,  load average: 0.32, 0.53, 0.59
+Tasks: 412 total,   1 running, 410 sleeping,   0 stopped,   1 zombie
+...
+\end{lstlisting}
+
+\paragraph{\bf 1(f)}
+The info about the number of context switches since bootup is found by reading the output of the file {\tt /proc/stat}. The commands listed in \ref{fig:proc1_f} is used.
+\begin{lstlisting}[captionpos=b, caption={Snippet showing memory usage status.},label={fig:proc1_f},style=codeBash]
+cat /proc/stat
+...
+ctxt 430315483
+btime 1691554212
+processes 86743
+...
+\end{lstlisting}
+Here {\tt ctxt} is the number of context switches and {\tt btime} is the time since boot.
+
+\pagebreak
+
+\paragraph{\bf 2}
+Listing~\ref{fig:proc2_mem} shows the memory usage information for the given programs. It was obtained using the {\tt cat /proc/[PID]/status} command.
+Each time the program was run it displayed the PID of the process and waited for user input until return.
+While each program was running the aforementioned command was used to collect the data.
+
+\vspace{10px}
+
+\noindent
+{\bf I.} The following observations were made about {\bf VmPeak}:
+
+\noindent
+For the first, third and fourth program the allocated memory is nearly the same. 
+This is justified as these three programs allocate an array of integers containing {\tt 1000000} elements. 
+
+In the case of the second program, an array of twice the size i.e. {\tt 2000000} was allocated, hence it allocates twice the memory.
+
+
+{\it After multiple runs I observed that the virtual memory of {\tt 6560 kB} or {\tt 6556 kB} gets allocated for programs one, three and four randomly, meaning this is not fixed and the OS may under/over allocate memory.}
+
+\vspace{10px}
+
+\noindent
+{\bf II.} The following observations were made about {\bf VmRSS}. 
+
+The first program never actually uses the allocated array; hence the VmRSS is the lowest i.e. {\tt 4740 kB} when compared to program three and program four, which also allocate {\tt 1000000} elements.
+The third program, uses half the array, hence the memory footprint is greater (at {\tt 4848 kB}) than program one (which used none of the elements) but less than program four which used all the allocated elements.
+The fourth program, uses the entire allocated array and hence the size of this is highest at {4896 kB}.
+
+Hence, we can conclude the relation of VmRSS among program one, three and four as follows. 
+
+$$ VSS(memory\_1) <= VSS(memory\_3) <= VSS(memory\_4)$$
+
+For the second program, we allocate {\tt 2000000} elements, but never use it.
+Surprisingly, the memory usage would suggest that most part of this allocation was acutally put in the memory.
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing memory usage for {\tt memory\_1.c}, {\tt memory\_2.c}, {\tt memory\_3.c} and {\tt memory\_4.c}.},label={fig:proc2_mem},style=codeBash]
+memory_1.c
+VmSize:	    6560 kB
+VmRSS:	    4740 kB
+
+memory_2.c
+VmSize:	   10460 kB
+VmRSS:	    8788 kB
+
+memory_3.c
+VmPeak:	    6560 kB
+VmRSS:	    4848 kB
+
+memory_4.c
+VmPeak:	    6556 kB
+VmRSS:	    4896 kB
+  
+\end{lstlisting}
+
+In conclusion, the memory allocation and the memory that exists at runtime in an operating system is non-deterministic and changes with each run of the program.
+
+
+\pagebreak
+
+\paragraph{\bf 3}
+The given executable {\tt subprocess} was first run in the background.
+Upon running the provided executable, the list of processes was checked using the {\tt ps -x} command, the following output was obtained (see Listing~\ref{fig:subprocesses}).  
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing processes created by {\tt subprocess}.},label={fig:subprocesses},style=codeBash]
+mee@mee-MS-7C96:~/dev/cs744/Assignment 1/lab1/lab1/subprocess$ ps -x
+...
+76206 pts/5    S+     0:00 ./subprocesses 23D0361
+76207 pts/5    S+     0:00 ./subprocesses 23D0361
+76208 pts/5    S+     0:00 ./subprocesses 23D0361
+76209 pts/5    S+     0:00 ./subprocesses 23D0361
+76210 pts/5    S+     0:00 ./subprocesses 23D0361
+76211 pts/5    S+     0:00 ./subprocesses 23D0361
+76212 pts/5    S+     0:00 ./subprocesses 23D0361
+76213 pts/5    S+     0:00 ./subprocesses 23D0361
+76214 pts/5    S+     0:00 ./subprocesses 23D0361
+76215 pts/5    S+     0:00 ./subprocesses 23D0361
+...
+\end{lstlisting}
+
+This would suggest that 9 subprocesses are created after {\tt 76206}. In order to verify that this was indeed the case, {\tt pstree} command was used. This is shown in Listing \ref{fig:tree_3}.
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing process tree for PID {\tt 76206}.},label={fig:tree_3},style=codeBash]
+mee@mee-MS-7C96:~/dev/cs744/Assignment 1/lab1/lab1/subprocess$ pstree -aps 76206
+systemd,1 splash
+  systemd,1364 --user
+    gnome-terminal-,47205
+      bash,75982
+        subprocesses,76206 23D0361
+          subprocesses,76207 23D0361
+          subprocesses,76208 23D0361
+          subprocesses,76209 23D0361
+          subprocesses,76210 23D0361
+          subprocesses,76211 23D0361
+          subprocesses,76212 23D0361
+          subprocesses,76213 23D0361
+          subprocesses,76214 23D0361
+          subprocesses,76215 23D0361
+\end{lstlisting}
+
+In conclusion, 9 subprocesses are created by the given program.
+
+\pagebreak
+
+\paragraph{\bf 4}
+The given programs ({\tt empty} and {\tt hello}) were run using the command as shown in Listing~\ref{fig:proc4}.
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing the command used to investigate the given executables.},label={fig:proc4},style=codeBash]
+strace ./empty
+strace ./hello
+\end{lstlisting}
+
+After running both the programs i.e. {\tt empty} and {\tt hello}, the following observations were made. 
+
+\begin{itemize}
+  \item In the {\tt empty} executable, only one known system call (discussed in lecture) {\tt execve} is seen.
+  \item In the {\tt hello} executable, {\tt write} and {\tt read} additional system calls are seen\footnote{which I am familiar with}.
+  \item The initial part of system calls made by both the programs is same, more specifically the first 32 system calls are the same in both the cases.
+\end{itemize}
+
+The list of function calls made in {\tt empty} is: 
+
+\begin{itemize}
+  \item \texttt{execve}: Replaces the current process with the new loaded process.
+  
+  \item \texttt{brk}: Adjusts the end of the data (heap) segment of the calling process to a specified value, effectively controlling the amount of memory allocated for dynamic memory allocation.
+  
+  \item \texttt{arch\_prctl}: Performs architecture-specific process or thread control operations, such as adjusting the process' address space.
+  
+  \item \texttt{mmap}: Maps a region of memory into the calling process's address space, allowing the process to access files, shared memory, or anonymous memory as if it were an array.
+  
+  \item \texttt{access}: Checks whether the calling process has permission to access a specified file or directory with a specified mode.
+  
+  \item \texttt{openat}: Opens a file specified by a relative or absolute path, relative to a specified directory, and returns a file descriptor.
+  
+  \item \texttt{newfstatat}: Obtains information about a file or directory specified by a relative or absolute path, relative to a specified directory.
+  
+  \item \texttt{close}: Closes a file descriptor, releasing any associated resources and allowing the descriptor to be reused.
+  
+  \item \texttt{read}: Reads data from a file descriptor into a buffer.
+  
+  \item \texttt{pread64}: Reads data from a file descriptor into a buffer at a specified offset, allowing for non-sequential reading.
+  
+  \item \texttt{set\_tid\_address}: Sets the location where the kernel stores the caller's thread ID, which can be used by the threading library.
+  
+  \item \texttt{set\_robust\_list}: Sets the list of robust futexes for the calling thread, which helps recover from certain synchronization issues.
+  
+  \item \texttt{rseq}: Provides a mechanism for user-space applications to manage read-copy update (RCU) critical sections.
+  
+  \item \texttt{mprotect}: Changes the protection settings (e.g., read, write, execute permissions) of a memory region.
+  
+  \item \texttt{prlimit64}: Sets or retrieves resource limits for a process.
+  
+  \item \texttt{munmap}: Unmaps a memory region that was previously mapped using \texttt{mmap}.
+  
+  \item \texttt{exit\_group}: Exits all threads in a process and terminates the process immediately, returning an exit status to the parent process.
+\end{itemize}
+
+The list of function calls made in {\tt hello} additionally includes: 
+
+\begin{itemize}
+  \item \texttt{getpid}: Retrieves the process ID of the calling process.
+  
+  \item \texttt{getrandom}: Generates cryptographically secure random numbers and fills a buffer with them.
+  
+  \item \texttt{write}: Writes data from a buffer to a file descriptor.
+  
+  \item \texttt{lseek}: Moves the read/write offset of a file descriptor to a specified position, allowing for random access within a file.
+\end{itemize}
+
+Notably, even though both used the system call {\tt read}, in case of hello it waited for user input before proceeding.
+When looking at the actual output, I found that the first argument supplied in each case was different.
+In case of {\tt empty}, the first argument was three i.e. "read(3,....., 832) = 832".
+And in case of {\tt hello}, the first argument was "read(0, Meetesh, "Meetesh\\n", 1024) = 8".
+It indicates that the first argument defined the stream from where the input flows to the read function.
+
+{\it Note: The information about the system calls that were not discussed in class was sourced from the internet.}
+
+\pagebreak
+
+\paragraph{\bf 5}
+The list of open files for the executable {\tt openfiles} was obtained as follows.
+
+{\tt Step 0: } The file was first made executable as it was not already using {\tt chmod +x openfiles}.
+
+{\tt Step 1: } The executable was started in the terminal. (See Listing~\ref{fig:proc5_1}).
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing the command used to execute {\tt openfiles}},label={fig:proc5_1},style=codeBash]
+mee@mee-MS-7C96:~/dev/cs744/Assignment 1/lab1/lab1/files$ chmod +x openfiles 
+mee@mee-MS-7C96:~/dev/cs744/Assignment 1/lab1/lab1/files$ ./openfiles 
+
+Press Enter Key to exit.
+  
+\end{lstlisting}
+
+{\tt Step 3: } While the program was running, a new terminal window was started and the pid was obtained using the {\tt ps -x} command. here the PID is {\bf 74024} (See Listing~\ref{fig:proc5_2}).
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing the running processes listed by {\tt ps}.},label={fig:proc5_2},style=codeBash]
+  mee@mee-MS-7C96:~/dev/cs744/Assignment 1/lab1/lab1/files$ ps -x
+...
+74024 pts/5    S+     0:00 ./openfiles
+74104 pts/7    Ss     0:00 bash
+74288 pts/7    R+     0:00 ps -x
+mee@mee-MS-7C96:~/dev/cs744/Assignment 1/lab1/lab1/files$ 
+\end{lstlisting}
+
+{\tt Step 4: } The PID {\bf 74024} was used to find the final list of files opened by {\tt openfiles}. The command used was {\tt lsof -F n -p 74024} (see Listing~\ref{fig:proc5_3}). The format specifier was used to filter out the list and retrieve only the files names. Notably, "tmp/welcome to OS", "tmp/CS333" and "tmp/CS347" were opened.
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing list of open files for {\tt openfiles}.},label={fig:proc5_3},style=codeBash]
+mee@mee-MS-7C96:~/dev/cs744/Assignment 1/lab1/lab1/files$ lsof -F n -p 74024
+p74024
+fcwd
+n/home/mee/dev/cs744/Assignment 1/lab1/lab1/files
+frtd
+n/
+ftxt
+n/home/mee/dev/cs744/Assignment 1/lab1/lab1/files/openfiles
+fmem
+n/usr/lib/x86_64-linux-gnu/libc.so.6
+fmem
+n/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2
+f0
+n/dev/pts/5
+f1
+n/dev/pts/5
+f2
+n/dev/pts/5
+f3
+n/tmp/welocme to OS
+f4
+n/tmp/CS333
+f5
+n/tmp/CS347
+
+\end{lstlisting}
+
+
+\paragraph{\bf 6}
+The {\tt lsblk} command was used to list all the block devices in the system (see Listing~\ref{fig:proc6}).
+This system contains only one block i.e. {\tt sda} and two partitions {\tt sda1} and {\tt sda2}. 
+The mountpoint of {\tt sda1} is {\bf /boot/efi} and the mountpoint of {\tt sda2} is {\bf /}.
+The file system of {\tt sda1} is {\bf vfat} and {\bf ext4} for {\tt sda2}.
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing list of open files for {\tt openfiles}.},label={fig:proc6},style=codeBash]
+mee@mee-MS-7C96:~/dev/cs744/Assignment 1/lab1/lab1/object$ lsblk -f
+NAME   FSTYPE FSVER ... MOUNTPOINTS
+sda                                                                           
+  sda1 vfat   FAT32 ... /boot/efi
+  sda2 ext4   1.0   ... /
+\end{lstlisting}
+
+\pagebreak
+
+\subsection{Object Files}
+
+The given object file was first disassembled using the {\tt objdump} command and the output was redirected to a temporary file.
+The flags {\tt -D} was used to ensure full disassembly was performed and the {\tt -s} flag was used to ensure all the sections were fully expanded.
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing the command used to dump the given object file.},label={fig:obj1},style=codeBash]
+objdump -D -s password.out > out
+\end{lstlisting}
+
+The following output was obtained in the {\tt out} file (see Listing~\ref{fig:obj2}).
+
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing the output of the object disassembly.},label={fig:obj2},style=codeBash]
+password.out:     file format elf64-x86-64
+
+Contents of section .interp:
+  0318 2f6c6962 36342f6c 642d6c69 6e75782d  /lib64/ld-linux-
+  0328 7838362d 36342e73 6f2e3200           x86-64.so.2.    
+Contents of section .note.gnu.property:
+  0338 04000000 10000000 05000000 474e5500  ............GNU.
+  0348 020000c0 04000000 03000000 00000000  ................
+Contents of section .note.gnu.build-id:
+  0358 04000000 14000000 03000000 474e5500  ............GNU.
+  0368 d9e510da 46a3e532 930b4fe5 c80c9304  ....F..2..O.....
+  0378 76c0b140                             v..@            
+Contents of section .note.ABI-tag:
+  037c 04000000 10000000 01000000 474e5500  ............GNU.
+  038c 00000000 03000000 02000000 00000000  ................
+Contents of section .gnu.hash:
+  03a0 02000000 08000000 01000000 06000000  ................
+  03b0 00008100 00000000 08000000 00000000  ................
+  03c0 d165ce6d                             .e.m            
+Contents of section .dynsym:
+  03c8 00000000 00000000 00000000 00000000  ................
+  03d8 00000000 00000000 4b000000 20000000  ........K... ...
+  03e8 00000000 00000000 00000000 00000000  ................
+  03f8 0b000000 12000000 00000000 00000000  ................
+  0408 00000000 00000000 10000000 12000000  ................
+  0418 00000000 00000000 00000000 00000000  ................
+  0428 2d000000 12000000 00000000 00000000  -...............
+  0438 00000000 00000000 26000000 12000000  ........&.......
+  0448 00000000 00000000 00000000 00000000  ................
+  0458 67000000 20000000 00000000 00000000  g... ...........
+  0468 00000000 00000000 76000000 20000000  ........v... ...
+  0478 00000000 00000000 00000000 00000000  ................
+  0488 17000000 22000000 00000000 00000000  ...."...........
+  0498 00000000 00000000                    ........        
+...
+\end{lstlisting}
+
+Inside this file doing a search of the phrase "Incorrect" reveals the following(see Listing~\ref{fig:obj3}).
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing the block containing the phrase "Incorrect".},label={fig:obj3},style=codeBash]
+Contents of section .rodata:
+ 2000 01000200 50617373 776f7264 31323300  ....Password123.
+ 2010 436f7272 65637421 00496e63 6f727265  Correct!.Incorre
+ 2020 63742e20 3a280a29 00                 ct. :(.).       
+\end{lstlisting}
+
+We can clearly see that the password is plain as day "Password123".
+When we try this password, the puzzle is solved Hurray!!! (see Listing~\ref{fig:obj4}).
+
+\begin{lstlisting}[captionpos=b, caption={Snippet showing the block containing the phrase "Incorrect".},label={fig:obj4},style=codeBash]
+mee@mee-MS-7C96:~/dev/cs744/Assignment 1/lab1/lab1/object$ ./password.out Password123
+Correct!
+\end{lstlisting}
+
+{\it Finding the password was a really fun process :)}.
+
+
+\end{document}
+
+\endinput
